@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chintaka Akalanka Wijeratne — Executive Technology Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e0e;
+    --paper: #f4f1ec;
+    --accent: #1a3a5c;
+    --gold: #c9a84c;
+    --muted: #6b6659;
+    --border: #d6d0c4;
+    --card: #ffffff;
+    --hover: #eae6df;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(244,241,236,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 4rem;
+    padding-top: 6rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent) 0%, #0d2238 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-right { position: relative; z-index: 1; }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-size: 1.15rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  .hero-tagline {
+    font-size: 0.88rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    border-left: 2px solid var(--gold);
+    padding-left: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+    color: var(--ink);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-pill:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  /* Stats card on the right */
+  .stats-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    color: white;
+    backdrop-filter: blur(10px);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.06em;
+    margin-top: 0.4rem;
+    text-transform: uppercase;
+  }
+  .stats-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin-bottom: 1.5rem;
+  }
+  .profile-summary {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    font-style: italic;
+    font-family: 'DM Serif Display', serif;
+  }
+
+  /* ---- SECTIONS ---- */
+  section {
+    padding: 5rem 4rem;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--ink);
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+
+  /* ---- COMPETENCIES ---- */
+  #competencies { background: var(--card); }
+  .competencies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .competency-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 1.2rem 1.4rem;
+    background: var(--paper);
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .competency-item.visible {
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .comp-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.55rem;
+  }
+  .competency-item span {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* ---- EXPERIENCE ---- */
+  #experience { background: var(--paper); }
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3.5rem;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .timeline-item.visible {
+    animation: fadeRight 0.6s ease forwards;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -2.75rem;
+    top: 0.5rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 3px var(--gold);
+  }
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+  }
+  .job-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--accent);
+  }
+  .job-period {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: var(--hover);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    white-space: nowrap;
+  }
+  .job-company {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .job-summary {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .job-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .job-bullets li {
+    font-size: 0.875rem;
+    color: var(--ink);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .job-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.8rem;
+  }
+
+  /* ---- ACHIEVEMENTS ---- */
+  #achievements { background: var(--accent); }
+  #achievements .section-title { color: white; }
+  #achievements .section-label { color: rgba(201, 168, 76, 0.8); }
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .achievement-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    cursor: default;
+  }
+  .achievement-card.visible {
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .achievement-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+    border-color: var(--gold);
+  }
+  .achievement-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .achievement-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: white;
+    margin-bottom: 0.6rem;
+  }
+  .achievement-desc {
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+  }
+
+  /* ---- EDUCATION & CERTS ---- */
+  #education { background: var(--card); }
+  .edu-certs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .edu-item {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .edu-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+  .edu-school {
+    font-size: 0.83rem;
+    color: var(--muted);
+  }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+  .cert-item {
+    padding: 0.9rem 1rem;
+    background: var(--paper);
+    border-radius: 0.6rem;
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cert-item::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 1.2rem;
+  }
+  .footer-note { font-size: 0.8rem; }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeRight {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    opacity: 0;
+    animation: heroIn 0.7s ease forwards;
+  }
+  .hero-left .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-left .hero-name { animation-delay: 0.25s; }
+  .hero-left .hero-title { animation-delay: 0.38s; }
+  .hero-left .hero-tagline { animation-delay: 0.5s; }
+  .hero-left .hero-contacts { animation-delay: 0.62s; }
+  .stats-card {
+    opacity: 0;
+    animation: heroIn 0.8s ease 0.5s forwards;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    #hero { grid-template-columns: 1fr; padding: 2rem; padding-top: 6rem; gap: 3rem; }
+    .hero-bg { display: none; }
+    .stats-card { background: var(--accent); }
+    section { padding: 3.5rem 2rem; }
+    .edu-certs-grid { grid-template-columns: 1fr; }
+    footer { padding: 2rem; flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero-name { font-size: 2.2rem; }
+    .cert-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <span class="nav-logo">CW</span>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#competencies">Expertise</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Impact</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-left">
+    <span class="hero-eyebrow">Executive Technology Leader</span>
+    <h1 class="hero-name">Chintaka Akalanka<br>Wijeratne</h1>
+    <p class="hero-title">Senior Product Manager · Enterprise ITOM Platforms<br>Global SaaS · AI & Cloud · Digital Transformation</p>
+    <p class="hero-tagline">Global SaaS &nbsp;·&nbsp; AI &amp; Cloud Platforms &nbsp;·&nbsp; Enterprise ITOM &nbsp;·&nbsp; Digital Transformation</p>
+    <div class="hero-contacts">
+      <a href="mailto:Chintaka100@gmail.com" class="contact-pill">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Chintaka100@gmail.com
+      </a>
+      <a href="tel:+94772070946" class="contact-pill">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 13.1a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2.36h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        +94 77 207 0946
+      </a>
+      <a href="https://linkedin.com/in/chintaka-wijeratne" target="_blank" class="contact-pill">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn Profile
+      </a>
+      <span class="contact-pill">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        Open to Global Remote / Hybrid
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stats-card">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">19+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">1,600+</span>
+          <span class="stat-label">Users Supported</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">&gt;99%</span>
+          <span class="stat-label">Uptime Delivered</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">15%</span>
+          <span class="stat-label">Annual Cost Savings</span>
+        </div>
+      </div>
+      <div class="stats-divider"></div>
+      <p class="profile-summary">"Converts complex domains — platforms, cloud, AI, and cybersecurity — into scalable products, operational efficiency, and sustained business value."</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCIES -->
+<section id="competencies">
+  <p class="section-label">What I Bring</p>
+  <h2 class="section-title">Core Competencies</h2>
+  <div class="competencies-grid" id="compGrid">
+    <div class="competency-item"><div class="comp-dot"></div><span>Platform &amp; Product Strategy (Global SaaS)</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Enterprise IT Governance &amp; Risk Management</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>AI-Enabled Operational Intelligence</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>ITOM, Observability &amp; Automation Platforms</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Cloud Architecture (Azure, Hybrid, SaaS)</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Cybersecurity &amp; Compliance Controls</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Remote &amp; Distributed Team Leadership</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Executive &amp; Board-Level Stakeholder Engagement</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Presales, Deal Support &amp; Value Engineering</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Digital Transformation &amp; Modernization</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Budget Ownership (CAPEX / OPEX)</span></div>
+    <div class="competency-item"><div class="comp-dot"></div><span>Large-Scale Infrastructure &amp; DR Strategy</span></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Career Journey</p>
+  <h2 class="section-title">Professional Experience</h2>
+  <div class="timeline" id="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <h3 class="job-title">Senior Product Manager — Enterprise IT Operations Platforms (ITOM)</h3>
+        <span class="job-period">June 2025 — Present</span>
+      </div>
+      <div class="job-company">IFS · Global SaaS Organization</div>
+      <p class="job-summary">Own the platform vision, product strategy, and multi-year global roadmap for enterprise ITOM products serving international customers across regulated and distributed environments.</p>
+      <ul class="job-bullets">
+        <li>Define and execute multi-year ITOM platform roadmap aligned to global market trends, enterprise customer needs, and IFS strategic objectives.</li>
+        <li>Drive AI-enabled automation, observability, and operational intelligence initiatives that measurably improve customer scalability and IT productivity.</li>
+        <li>Lead distributed engineering, R&amp;D, and QA teams across multiple regions from discovery and design through to enterprise adoption.</li>
+        <li>Partner with sales and presales teams on complex global enterprise engagements, supporting pipeline growth and value engineering.</li>
+        <li>Act as primary product authority in executive stakeholder engagements, roadmap reviews, and customer advisory sessions.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <h3 class="job-title">Product Manager — Enterprise ITOM Platforms</h3>
+        <span class="job-period">Sep 2022 — June 2025</span>
+      </div>
+      <div class="job-company">IFS · Global SaaS Organization</div>
+      <p class="job-summary">Defined product vision and roadmap for globally deployed ITOM platform capabilities, supporting enterprise and regulated customers across multiple regions.</p>
+      <ul class="job-bullets">
+        <li>Delivered roadmap-driven platform enhancements that improved automation maturity, operational efficiency, and scalability across the global customer base.</li>
+        <li>Served as a techno-commercial partner to customer-facing teams, translating technical platform capabilities into business value propositions.</li>
+        <li>Supported complex enterprise deal cycles with product expertise, customized demonstrations, and strategic roadmap alignment.</li>
+        <li>Established positioning frameworks for regulated and enterprise customers that accelerated time-to-value and improved retention.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <h3 class="job-title">Operations Manager — Information Technology</h3>
+        <span class="job-period">Jan 2021 — Sep 2022</span>
+      </div>
+      <div class="job-company">Sunshine Healthcare Lanka Ltd · Regulated Healthcare Enterprise</div>
+      <p class="job-summary">Strategic technology advisor to senior leadership in a regulated, multi-location healthcare environment, owning IT governance, risk, and full budget accountability.</p>
+      <ul class="job-bullets">
+        <li>Achieved consistent 10–15% annual IT cost optimization through strategic vendor management and infrastructure rationalization.</li>
+        <li>Defined and executed a multi-year IT and digital transformation roadmap across enterprise systems and operations.</li>
+        <li>Owned full IT governance, risk management, and compliance frameworks aligned to regulatory requirements.</li>
+        <li>Managed CAPEX and OPEX budgets, procurement, and vendor relationships across the technology estate.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <h3 class="job-title">Senior Systems Engineer (Level III) — Cloud &amp; Platform SME</h3>
+        <span class="job-period">Aug 2019 — Jan 2021</span>
+      </div>
+      <div class="job-company">IFS R&amp;D International</div>
+      <ul class="job-bullets">
+        <li>Served as Subject Matter Expert for Microsoft Azure, cloud-native platforms, and Microsoft Bot Framework across global R&amp;D initiatives.</li>
+        <li>Partnered with international R&amp;D teams to modernize enterprise products for SaaS delivery, improving platform scalability and cloud-native architecture.</li>
+        <li>Designed and delivered AI-powered enterprise chatbots deployed across multiple regions, enabling self-service and operational automation.</li>
+        <li>Conducted internal and external technology enablement sessions across regions, building capability in cloud and platform engineering.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <h3 class="job-title">Team Lead — Data Centre &amp; Cloud Platforms</h3>
+        <span class="job-period">Mar 2013 — Jul 2019</span>
+      </div>
+      <div class="job-company">David Pieris Motor Company Group · Multi-Entity Conglomerate</div>
+      <ul class="job-bullets">
+        <li>Led enterprise infrastructure and cloud strategy supporting 1,600+ end users across multiple locations.</li>
+        <li>Architected Sri Lanka's first successful hybrid cloud platform (on-premises + public cloud), establishing the organization as a regional pioneer.</li>
+        <li>Implemented cloud-based disaster recovery achieving greater than 99% system uptime across critical business systems.</li>
+        <li>Delivered digital workplace transformation initiatives that modernized user productivity and collaboration across the group.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <h3 class="job-title">Head of IT</h3>
+        <span class="job-period">Jan 2012 — Feb 2013</span>
+      </div>
+      <div class="job-company">East West Marketing (Pvt) Ltd</div>
+      <ul class="job-bullets">
+        <li>Owned end-to-end IT operations, infrastructure modernization, and cybersecurity posture across the organization.</li>
+        <li>Delivered virtualization, network optimization, ERP administration, and security control implementations.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <h3 class="job-title">Junior Assistant Manager — IT</h3>
+        <span class="job-period">Oct 2007 — Jan 2012</span>
+      </div>
+      <div class="job-company">Toll Global Logistics Lanka (Pvt) Ltd</div>
+      <ul class="job-bullets">
+        <li>Managed enterprise IT infrastructure across the head office and island-wide logistics center network.</li>
+        <li>Coordinated with regional and global IT governance teams on infrastructure standards, reporting, and compliance.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="section-label">Impact &amp; Legacy</p>
+  <h2 class="section-title">Key Achievements</h2>
+  <div class="achievements-grid" id="achGrid">
+
+    <div class="achievement-card">
+      <div class="achievement-icon">🏆</div>
+      <h3 class="achievement-title">Platform-First ITOM Strategy</h3>
+      <p class="achievement-desc">Defined and delivered ITOM platform strategy adopted globally across international enterprise customers at IFS, directly contributing to pipeline growth and customer retention.</p>
+    </div>
+
+    <div class="achievement-card">
+      <div class="achievement-icon">☁️</div>
+      <h3 class="achievement-title">Sri Lanka Hybrid Cloud Pioneer</h3>
+      <p class="achievement-desc">Architected Sri Lanka's first successful hybrid cloud platform at David Pieris Group, enabling &gt;99% uptime via cloud DR and transforming infrastructure resilience.</p>
+    </div>
+
+    <div class="achievement-card">
+      <div class="achievement-icon">📉</div>
+      <h3 class="achievement-title">10–15% Annual IT Cost Optimization</h3>
+      <p class="achievement-desc">Sustained annual IT cost savings of 10–15% at Sunshine Healthcare through strategic vendor management, infrastructure rationalization, and governance disciplines.</p>
+    </div>
+
+    <div class="achievement-card">
+      <div class="achievement-icon">🤖</div>
+      <h3 class="achievement-title">AI Chatbot Deployment Across Regions</h3>
+      <p class="achievement-desc">Designed and deployed AI-powered enterprise chatbots across multiple global regions at IFS, enabling automation-led productivity improvements and self-service at scale.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Credentials</p>
+  <h2 class="section-title">Education &amp; Certifications</h2>
+  <div class="edu-certs-grid">
+
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--muted);margin-bottom:1.5rem;letter-spacing:0.04em;">Academic Qualifications</h3>
+      <div class="edu-item">
+        <div class="edu-badge">MBA</div>
+        <div>
+          <div class="edu-degree">Master of Business Administration</div>
+          <div class="edu-school">Cardiff Metropolitan University, United Kingdom</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-badge">PGD</div>
+        <div>
+          <div class="edu-degree">Postgraduate Diploma in Information Technology</div>
+          <div class="edu-school">Sri Lanka Institute of Information Technology (SLIIT)</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--muted);margin-bottom:1.5rem;letter-spacing:0.04em;">Professional Certifications &amp; Memberships</h3>
+      <div class="cert-grid">
+        <div class="cert-item">ITIL v4 Certified</div>
+        <div class="cert-item">Microsoft Certified Systems Engineer (MCSE)</div>
+        <div class="cert-item">Microsoft Certified Trainer (MCT)</div>
+        <div class="cert-item">Member — British Computer Society (MBCS)</div>
+        <div class="cert-item">Microsoft Azure Platform SME</div>
+        <div class="cert-item">Enterprise SaaS &amp; Cloud Architecture</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-name">Chintaka Akalanka Wijeratne</div>
+    <div class="footer-note" style="margin-top:0.3rem;">Executive Technology &amp; Platform Product Leader</div>
+  </div>
+  <div class="footer-note" style="text-align:right;">
+    Senior executive references available upon request.<br>
+    Open to Global Remote / Hybrid opportunities.
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, entry.target.dataset.delay || 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Stagger competency items
+  document.querySelectorAll('.competency-item').forEach((el, i) => {
+    el.dataset.delay = i * 60;
+    observer.observe(el);
+  });
+
+  // Stagger timeline items
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.dataset.delay = i * 80;
+    observer.observe(el);
+  });
+
+  // Stagger achievement cards
+  document.querySelectorAll('.achievement-card').forEach((el, i) => {
+    el.dataset.delay = i * 100;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
